@@ -9,6 +9,9 @@ public class BcaKlikpayGetBalancePaymentRequest implements GetBalancePaymentRequ
     @Getter
     @Setter
     private String userId;
+    @Getter
+    @Setter
+    private Long balance;
     @Override
     public PaymentMethod getMethod() {
         return PaymentMethod.BCA_KLIKPAY;

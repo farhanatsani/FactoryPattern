@@ -9,6 +9,9 @@ public class GopayGetBalancePaymentRequest implements GetBalancePaymentRequest {
     @Getter
     @Setter
     private String userId;
+    @Getter
+    @Setter
+    private Long balance;
     @Override
     public PaymentMethod getMethod() {
         return PaymentMethod.CREDIT_CARD;
