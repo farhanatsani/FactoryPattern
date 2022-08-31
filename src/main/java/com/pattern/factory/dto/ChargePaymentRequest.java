@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class ChargePaymentRequest {
-    private String phoneNo;
+    private String userId;
     private PaymentMethod paymentMethod;
     private Long amount;
 }

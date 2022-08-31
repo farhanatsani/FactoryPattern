@@ -23,7 +23,8 @@ public class PaymentController {
         // Payment Gateway
         payment.createChargeRequest();
 
-        return ResponseEntity.ok("Success Charge Payment");
+        return ResponseEntity.ok("Success Charge Payment " + chargePaymentRequest.getPaymentMethod().name() +
+                " amount Rp. " + chargePaymentRequest.getAmount() + ". Id : " + paymentChargeRequest.getId());
     }
 
     @DeleteMapping(value = "/api/payments/{id}")
@@ -39,7 +40,7 @@ public class PaymentController {
         // Payment Gateway
         payment.createCancelRequest();
 
-        return ResponseEntity.ok("Success Charge Payment");
+        return ResponseEntity.ok("Success cancel payment Id : " + id);
     }
 
     @GetMapping(value = "/api/payments/{phoneNo}")
