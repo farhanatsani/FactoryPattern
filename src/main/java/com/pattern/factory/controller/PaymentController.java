@@ -16,12 +16,10 @@ public class PaymentController {
     public ResponseEntity<?> chargePayment(@RequestBody ChargePaymentRequest chargePaymentRequest) {
         PaymentFactory payment = paymentOption.getPayment(chargePaymentRequest.getPaymentMethod());
 
+        // Payment Gateway
         PaymentChargeRequest paymentChargeRequest = payment.createChargeRequest();
         paymentChargeRequest.setId("12345");
-        paymentChargeRequest.setAmount(100000L);
-
-        // Payment Gateway
-        payment.createChargeRequest();
+        paymentChargeRequest.setAmount(chargePaymentRequest.getAmount());
 
         return ResponseEntity.ok("Success Charge Payment " + chargePaymentRequest.getPaymentMethod().name() +
                 " amount Rp. " + chargePaymentRequest.getAmount() + ". Id : " + paymentChargeRequest.getId());
@@ -33,17 +31,15 @@ public class PaymentController {
         // This is should from database, get Id from table
         PaymentMethod hardcodedPaymentMethod = PaymentMethod.GOPAY;
 
+        // Payment Gateway
         PaymentFactory payment = paymentOption.getPayment(hardcodedPaymentMethod);
         PaymentCancelRequest paymentCancelRequest = payment.createCancelRequest();
         paymentCancelRequest.setId(id);
 
-        // Payment Gateway
-        payment.createCancelRequest();
-
         return ResponseEntity.ok("Success cancel payment Id : " + id);
     }
 
-    @GetMapping(value = "/api/payments/{phoneNo}")
+    @GetMapping(value = "/api/balances/{phoneNo}")
     public ResponseEntity<?> getBalance(String phoneNo) {
 
         // This is should from database, get Id from table
